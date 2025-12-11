@@ -1,102 +1,61 @@
-# Nalin POS — Frontend
+# Nalin-POS-FE
 
-A modern Electron front-end built with React, TypeScript and Vite for the Nalin Point-of-Sale (POS) system.
+Frontend (React) for **Nalin POS System** — designed to work with the Spring Boot backend and Electron desktop app.
 
-Core goals:
-- Fast, responsive POS UI for desktop (Electron)
-- Type-safe components and state management with TypeScript
-- Fast dev feedback using Vite + React
-- Linting and consistent code style using ESLint + preconfigured rules
+This project contains the **React UI** for Point of Sale operations like billing, products, orders, customers, and reports. It is built as part of a full POS application and used in the Electron desktop package.
 
-Tech stack:
-- React
-- TypeScript
-- Vite (dev server, build)
-- Electron (desktop wrapper, optional depending on packaging)
-- ESLint (recommended rules; type-aware checks)
+---
 
-Prerequisites
-- Node.js (>= 16)
-- npm or yarn
-- Git
+## 🚀 Features
 
-Quick Start
-1. Clone the repo:
-   git clone <repo-url>
-   cd Electron_Pos_FE
+- 🟦 Built with **React**  
+- 📡 Connects to Spring Boot backend APIs  
+- 📱 Modern responsive UI for POS functions  
+- 🛠️ Can be used in development or bundled into Electron
 
-2. Install dependencies:
-   npm install
-   // or
-   yarn
+---
 
-3. Run the development server:
-   npm run dev
-   // or
-   yarn dev
+## 🛠️ Setup & Run
 
-4. (If using Electron development mode) Start Electron while the dev server runs:
-   npm run electron:dev
-   // or
-   yarn electron:dev
+### 1. Install dependencies
 
-Build & Packaging (example)
-- Build the frontend:
-  npm run build
-  // or
-  yarn build
+npm install
 
-- Build/package the Electron app:
-  npm run electron:build
-  // or
-  yarn electron:build
+### 2. Run in development
 
-Note: script names may differ—check package.json for exact names used in this project.
+npm start
 
-Environment Variables
-- Create a .env for development and .env.production for builds as needed
-- Typical keys prefixed with VITE_ (Vite exposes these to the client), e.g. VITE_API_URL
+This will start the frontend at http://localhost:3000 (React dev server).
 
-Project Structure
-- src/
-  - main/       // Electron main process code (if present)
-  - preload/    // Preload scripts for secure renderer access (if present)
-  - renderer/   // React app (Vite entry: src/main.tsx or src/index.tsx)
-  - components/ // Shared React components
-  - pages/      // Feature pages / routes
-  - assets/     // Images, fonts, and other static assets
-  - styles/     // CSS/SCSS styles
-- public/
-- package.json
-- tsconfig.json
-- vite.config.ts
+### 3. Build for production
 
-Common Scripts
-- npm run dev — run Vite dev server
-- npm run build — build the web bundle
-- npm run preview — preview the production build locally
-- npm run lint — run ESLint
-- npm run lint:fix — run ESLint and auto-fix
-- npm run type-check — run TypeScript type checking
-- npm run electron:dev — run Electron in development mode (if configured)
-- npm run electron:build — package the Electron application (if configured)
+npm run build
 
-Linting & Type Checking
-- ESLint is included for code quality. Consider enabling type-checked rules for stronger linting.
-- Run type-checks separately during CI or locally: npm run type-check
+The optimized build will be generated in the build/ folder, which can be used by the Electron app for packaging.
 
-Troubleshooting
-- HMR with Electron: Ensure the dev server is running and the electron:dev script is pointing to the Vite dev URL.
-- Port conflicts: Change VITE_PORT in .env if needed.
+📦 Integration (Electron + Backend)
+Build the React UI with npm run build
 
-Contributing
-- Fork, create a topic branch, and open a PR
-- Follow the project's lint rules; run tests and linting before submitting
+The output folder (build/) is used inside the Electron project
 
-License
-- MIT (update as needed in package.json)
+Make sure your Spring Boot backend is running before opening the Electron app
 
-Contact / Maintainers
-- Add maintainer or team contact information here (email or link to repo owner)
+Electron will load the built React frontend and connect to backend APIs
 
-For more detailed configuration, specially with packaging and Electron main/preload/process isolation, check package.json and the repository scripts/config files.
+📁 Tech Stack
+React – UI Framework
+
+JavaScript / JSX – Frontend logic
+
+Axios / Fetch (optional) – API calls to backend
+
+📄 Notes
+Configure API base URLs in .env before building (e.g., REACT_APP_API_URL=http://localhost:8080/api)
+
+You can add UI libraries like Bootstrap, Material UI, Tailwind, etc.
+
+Extend components for products, cart, orders, user auth, reports
+
+👨‍💻 Author
+Manuth Kausilu
+GitHub: https://github.com/manuthkausilu
