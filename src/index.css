@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@media print {
+  .print\:block {
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

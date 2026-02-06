@@ -345,10 +345,11 @@ const PosPage = () => {
     if (isCheckoutDisabled) return;
     setIsCheckoutDisabled(true);
     const saleDTO = prepareSaleDTO();
-    console.log('Prepared SaleDTO:', saleDTO);
+    // Log prepared DTO before sending
+    console.info('[PosPage] Prepared SaleDTO (sending to backend):', saleDTO);
     try {
       const response = await saveSale(saleDTO);
-      console.log("Response saleDTO :" , response.saleDTO)
+      console.info('[PosPage] saveSale response:', response);
       if (response.statusCode === 201) {
         // Create a complete sale object combining response and prepared data
         const newSaleData: Sale = {

@@ -8,10 +8,10 @@ import {
     MdCategory,
     MdLocalOffer,
     MdReceipt,
-    MdAnalytics,
     MdSettings,
     MdLogout,
-    MdBusiness
+    MdBusiness,
+    MdBarChart
 } from 'react-icons/md';
 
 const AdminSidebar = () => {
@@ -26,7 +26,8 @@ const AdminSidebar = () => {
         { path: '/admin/categories', icon: <MdCategory size={20} />, label: 'Categories' },
         { path: '/admin/brands', icon: <MdBusiness size={20} />, label: 'Brands' },
         { path: '/admin/sales', icon: <MdReceipt size={20} />, label: 'Sales' },
-        { path: '/admin/reports', icon: <MdAnalytics size={20} />, label: 'Reports' },
+        { path: '/admin/sales-reports', icon: <MdReceipt size={20} />, label: 'Sales Reports' },
+        { path: '/admin/product-reports', icon: <MdBarChart size={20} />, label: 'Product Reports' },
         { path: '/admin/settings', icon: <MdSettings size={20} />, label: 'Settings' },
     ];
 

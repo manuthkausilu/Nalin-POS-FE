@@ -1,11 +1,33 @@
 import apiClient from "./ApiClient";
 import type { SaleDTO } from "../types/Sale";
+// Helper: ensure each saleItem has a correct totalPrice (qty * unitPrice)
+const computeSaleTotals = (saleData: any) => {
+  if (!saleData || !Array.isArray(saleData.saleItems)) return saleData;
+  const updatedItems = saleData.saleItems.map((item: any) => {
+    const qty = Number(item.quantity ?? item.qty ?? 0) || 0;
+    const unit = Number(item.unitPrice ?? item.price ?? item.sellingPrice ?? 0) || 0;
+    const totalPrice = Number((qty * unit).toFixed(2));
+    return {
+      ...item,
+      quantity: qty,
+      totalPrice,
+    };
+  });
+  return { ...saleData, saleItems: updatedItems };
+};
+
 export const saveSale = async (saleData: SaleDTO) => {
   try {
-    const response = await apiClient.post("/sales", saleData);
+    const payload = computeSaleTotals({ ...saleData });
+    // Log outgoing request payload and timestamp
+    console.info('[SaleService] Sending sale request to /sales at', new Date().toISOString(), payload);
+    const response = await apiClient.post("/sales", payload);
+    // Log response details
+    console.info('[SaleService] Received response for /sales:', { status: response.status, data: response.data });
     return response.data;
   } catch (error) {
-    console.error("Saving sale failed:", error);
+    // Include payload in error log for easier debugging
+    console.error('[SaleService] Saving sale failed. Payload:', saleData, 'Error:', error);
     throw error;
   }
 };
@@ -39,9 +61,11 @@ export const getSaleByUserId = async (id: string | number) => {
     throw error;
   }
 };
+
 export const updateSale = async (id: string | number, saleData: any) => {
   try {
-    const response = await apiClient.put(`/sales/${id}`, saleData);
+    const payload = computeSaleTotals({ ...saleData });
+    const response = await apiClient.put(`/sales/${id}`, payload);
     return response.data;
   } catch (error) {
     console.error("Updating sale failed:", error);

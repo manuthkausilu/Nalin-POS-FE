@@ -1,4 +1,4 @@
-import { createHashRouter ,Navigate } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import { UserLayout } from "./layouts/UserLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
@@ -7,12 +7,13 @@ import { useAuth } from "./context/AuthContext";
 // Admin Pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UserManagement from "./pages/admin/UserManagement";
-import Reports from "./pages/admin/Reports";
 import Inventory from "./pages/admin/Inventory";
 import Categories from "./pages/admin/Categories";
 import Brands from "./pages/admin/Brands";
 import Products from "./pages/admin/Products";
 import AdminSalesPage from "./pages/admin/AdminSalesPage";
+import Invoice from "./pages/admin/SaleReports";
+import ProductReports from "./pages/admin/ProductReports";
 // User Pages 
 import PosPage from "./pages/PosPage";
 import InventoryPage from "./pages/InventoryPage";
@@ -45,11 +46,11 @@ const router = createHashRouter([
     path: "/login",
     element: <LoginPage />
   },
-    {
+  {
     path: "/",
     element: <RootRedirect />
   },
-  
+
 
   // USER-PROTECTED ROUTES (Cashier / Regular User)
   {
@@ -93,7 +94,8 @@ const router = createHashRouter([
       { path: "users", element: <UserManagement /> }, // Manage system users
       { path: "inventory", element: <Inventory /> }, // Manage inventory
       { path: "sales", element: <AdminSalesPage /> }, // Sales management
-      { path: "reports", element: <Reports /> }, // Reports & analytics
+      { path: "sales-reports", element: <Invoice /> }, // Sales reports
+      { path: "product-reports", element: <ProductReports /> }, // Product sales reports
       { path: "settings", element: <SystemSettings /> } // System configurations
     ]
   }
